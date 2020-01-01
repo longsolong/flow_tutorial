@@ -1,7 +1,7 @@
 ---
 title: inspire-02-00-square-spincycle
 created: '2019-09-21T13:32:18.909Z'
-modified: '2019-10-19T03:31:31.827Z'
+modified: '2020-01-12T05:23:58.472Z'
 ---
 
 # inspire-02-00-square-spincycle
@@ -66,13 +66,13 @@ https://square.github.io/spincycle/v1.0/develop/requests.html#conditional-node
 
 conditional-node不是一个强需求的概念，但是如果有这个概念，表达起来会更准确些，比如步骤的状态可以由流程系统置为skipped，而不真实run一个if condition(false)，然后被流程系统置为success。
 
-原python项目里关于此中情况的处理，success/skipped两种都有，success更多一些，可以考虑明确下。
+原python项目里关于此种情况的处理，success/skipped两种都有，success更多一些，可以考虑明确下。
 
 
 ### build & deploy
 
 https://square.github.io/spincycle/v1.0/operate/deploy#building
 https://square.github.io/spincycle/v1.0/develop/extensions.html
-这两个连接提到了自行实现的job和extension怎么和源码一起编译
+这两个链接里提到了自行实现的job和extension怎么和源码一起编译
 
 

@@ -1,7 +1,7 @@
 ---
 title: inspire-02-01-square-spincycle源码job-runner
 created: '2019-10-19T03:30:58.570Z'
-modified: '2019-10-19T10:36:10.429Z'
+modified: '2019-11-09T09:42:28.553Z'
 ---
 
 # inspire-02-01-square-spincycle源码job-runner
@@ -268,6 +268,20 @@ type Traverser interface {
 	// to report running status.
 	Running() []proto.JobStatus
 }
+```
+
+## job-runner/server/server.go
+
+```
+// Runner Factory makes a job.Runner to run one job. It's used by chain.Traversers
+// to run jobs.
+rf := runner.NewFactory(jobs.Factory, rmc)
+
+// Traverser Factory is used by API to make a new chain.Traverser to run a
+// job chain. These are stored in a Traverser Repo (just a map) so API can
+// keep track of what's running.
+trFactory := chain.NewTraverserFactory(s.chainRepo, rf, rmc, s.shutdownChan)
+s.traverserRepo = cmap.New()
 ```
 
 ## 总结
