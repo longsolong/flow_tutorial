@@ -2,7 +2,7 @@
 attachments: [Clipboard_2020-01-12-18-42-33.png]
 title: build-04-08-准备单进程运行时的reaper
 created: '2019-12-18T00:33:24.670Z'
-modified: '2020-01-12T10:42:48.561Z'
+modified: '2020-01-16T09:10:17.962Z'
 ---
 
 # build-04-08-准备单进程运行时的reaper
@@ -12,7 +12,8 @@ modified: '2020-01-12T10:42:48.561Z'
 reaper的主要工作就是来消费doneJobChan，并在满足执行依赖的情况下将下游的job放入runJobChan。
 
 另外本单进程运行时不处理持久化相关的事情，所以相比起spincycle，本运行时只实现RunningChainReaper。
-比如，spincycle里另外的StoppedChainReaper用来处理traverser执行Stop后的状态下，对doneJobChan的消费，本运行时暂不作处理，traverser Stop的时候chain的job还没执行完就算了。
+比如，spincycle里另外的StoppedChainReaper用来处理traverser执行Stop后的状态下，对doneJobChan的消费进行不执行但是做好记录的处理。
+本运行时暂不作处理，traverser Stop的时候chain的job还没执行完就算了。
 
 ## 定义
 

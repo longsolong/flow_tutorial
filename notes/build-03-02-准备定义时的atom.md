@@ -2,7 +2,7 @@
 attachments: [Clipboard_2020-01-12-14-23-08.png, Clipboard_2020-01-12-15-19-59.png]
 title: build-03-02-准备定义时的atom
 created: '2020-01-12T05:50:19.369Z'
-modified: '2020-01-12T07:45:41.389Z'
+modified: '2020-01-16T08:46:12.959Z'
 ---
 
 # build-03-02-准备定义时的atom
@@ -21,8 +21,8 @@ runable也是interface，定义如下，
 
 可以看到，atom和runable加起来，就定义了StepID Create Run Stop几个具象step必须实现的方法。
 分开成atom和runable两个interface，也是实现的一种取舍，
-- 抽象step甚至只实现atom interface的一部分StepID
-- 具象step嵌入抽象step后，再自行实现Create Run以及Stop，即补齐atom interface的剩余部分以及runable这个inferface
+- 其中抽象step只实现atom interface的一部分StepID
+- 具象step嵌入抽象step后，再自行实现Create Run以及Stop
 
 ### run函数的返回值有所区别
 
