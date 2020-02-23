@@ -1,8 +1,8 @@
 ---
-attachments: [Clipboard_2020-01-12-15-34-49.png, Clipboard_2020-01-12-15-41-26.png, Clipboard_2020-01-12-15-42-43.png]
+attachments: [Clipboard_2020-01-12-15-41-26.png, Clipboard_2020-01-12-15-42-43.png, Clipboard_2020-02-23-11-16-58.png]
 title: build-03-03-准备定义时的抽象step和具象step
 created: '2019-10-07T12:44:29.808Z'
-modified: '2020-01-12T07:42:43.573Z'
+modified: '2020-02-23T13:30:40.285Z'
 ---
 
 # build-03-03-准备定义时的抽象step和具象step
@@ -32,20 +32,20 @@ tree pkg/workflow/step/
 pkg/workflow/step/
 ├── builtin
 │   ├── command
-│   │   ├── command.go
-│   │   ├── echo.go
-│   │   └── echo_test.go
+│   │   └── command.go
 │   ├── noop.go
-│   ├── sleep.go
-│   └── sleep_test.go
+│   ├── noop_atom.go
+│   └── noop_test.go
 └── step.go
+
+2 directories, 5 files
 ```
 
 ## 抽象step 
 
-![](@attachment/Clipboard_2020-01-12-15-34-49.png)
+![](@attachment/Clipboard_2020-02-23-11-16-58.png)
 
-抽象的Step struct，目前实际上只是帮忙处理了StepID。
+抽象的Step struct，目前实际上只是帮忙处理了AtomID的其中两个字段，而具象Step的AtomID方法是通过go generate生成的。所以抽象Step是一个很弱化的概念，后续篇幅会省略掉。
 
 ## builtin具象step举例
 

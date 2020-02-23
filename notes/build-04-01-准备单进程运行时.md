@@ -1,7 +1,7 @@
 ---
 title: build-04-01-准备单进程运行时
 created: '2019-11-10T06:19:16.294Z'
-modified: '2020-01-17T08:09:48.686Z'
+modified: '2020-02-22T08:49:19.108Z'
 ---
 
 # build-04-01-准备单进程运行时
@@ -14,13 +14,14 @@ modified: '2020-01-17T08:09:48.686Z'
 - [x] 步骤级别的参数传递和校验
 - [ ] 有步骤间参数的上下文参数传递
 - [x] 有步骤重试以及sequence重试
-- [ ] 有sequence expansion
-- [x] dag有分支
+- [ ] 有sequence expansion并且有并发执行expansion的能力
+- [x] dag有分支并且有并发执行分支的能力
 - [ ] 有conditional导致ignored的情况
 - [ ] 有动态生成步骤
 - [ ] 有动态填充步骤
 - [x] 发起执行流程的接口
 - [ ] 中断执行的能力
+- [ ] 有自行通过channel编排goroutine pipeline的能力
 
 ### 项目需要达成的小目标
 

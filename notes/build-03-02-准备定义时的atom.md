@@ -1,8 +1,8 @@
 ---
-attachments: [Clipboard_2020-01-12-14-23-08.png, Clipboard_2020-01-12-15-19-59.png]
+attachments: [Clipboard_2020-01-12-15-19-59.png, Clipboard_2020-02-23-11-10-49.png, Clipboard_2020-02-23-11-11-13.png]
 title: build-03-02-准备定义时的atom
 created: '2020-01-12T05:50:19.369Z'
-modified: '2020-01-16T08:46:12.959Z'
+modified: '2020-02-23T13:30:34.931Z'
 ---
 
 # build-03-02-准备定义时的atom
@@ -11,7 +11,7 @@ modified: '2020-01-16T08:46:12.959Z'
 
 atom是单个节点的interface，定义如下。
 
-![](@attachment/Clipboard_2020-01-12-14-23-08.png)
+![](@attachment/Clipboard_2020-02-23-11-11-13.png)
 
 ## runable
 
@@ -19,9 +19,8 @@ runable也是interface，定义如下，
 
 ![](@attachment/Clipboard_2020-01-12-15-19-59.png)
 
-可以看到，atom和runable加起来，就定义了StepID Create Run Stop几个具象step必须实现的方法。
-分开成atom和runable两个interface，也是实现的一种取舍，
-- 其中抽象step只实现atom interface的一部分StepID
+可以看到，atom和runable加起来，就定义了AtomID Create Run Stop几个具象step必须实现的方法，分开成atom和runable两个interface，
+- 其中AtomID是通过go generate生成的
 - 具象step嵌入抽象step后，再自行实现Create Run以及Stop
 
 ### run函数的返回值有所区别

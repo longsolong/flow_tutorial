@@ -1,8 +1,8 @@
 ---
-attachments: [Clipboard_2020-01-12-18-37-52.png]
+attachments: [Clipboard_2020-01-12-18-37-52.png, Traverser.xmind]
 title: build-04-03-准备单进程运行时的traverser
 created: '2019-12-18T00:33:55.109Z'
-modified: '2020-01-16T09:07:45.211Z'
+modified: '2020-02-23T13:28:43.769Z'
 ---
 
 # build-04-03-准备单进程运行时的traverser
@@ -77,11 +77,11 @@ type Traverser interface {
 - 启动RunningChainReaper的goroutine，消费doneJobChan，并将下游发送给runJobChan。
 
 ```
-	go func() {
-		defer close(runningReaperChan) // indicate reaper is done (see select below)
-		defer close(t.runJobChan)      // stop runJobs goroutine
-		t.reaper.Run(ctx)
-	}()
+  go func() {
+    defer close(runningReaperChan) // indicate reaper is done (see select below)
+    defer close(t.runJobChan)      // stop runJobs goroutine
+    t.reaper.Run(ctx)
+  }()
 ```
 
 在reaper.Run返回后，会close掉runJobChan，这会接着导致runJobs的goroutine也停下来。
@@ -160,15 +160,35 @@ type Traverser interface {
     - IncrementJobTries记录增加的job retry到chain的记录上
     - 设置job.State为jobRunner.Run的返回状态
 
-### Stop
+### Stop触发后的逻辑联系
 
 - close stopChan并且将stopped置为true
-- 执行t.reaper.Stop，其中reaper为上述RunningChainReaper。
+  - 此状态下runJobs不会实际执行job，而是快速消耗掉runJobChan，从而释放runningReaper使其不被block住
+- 执行t.reaper.Stop，其中reaper为上述RunningChainReaper
+  - 这里就会导致Run启动的这个goroutine进入退出状态
+
+    ```
+    go func() {
+      defer close(runningReaperChan) // indicate reaper is done (see select below)
+      defer close(t.runJobChan)      // stop runJobs goroutine
+      t.reaper.Run(ctx)
+    }()
+    ```
+
+    - 从而导致Run进入退出状态
+    - 从而也会导致runJobs的goroutine进入退出状态，close掉pendingChan
 - 带着stopTimeout执行stopRunningJobs
 - close doneChan
+  - 导致Run最终退出
 
 ### stopRunningJobs
 
 - 等待pendingChan被close
 - 等待pending为0
 - 通过WaitGroup等待并发执行所有runnerRepo中的jobRunner的Stop
+
+### xmind
+
+详见![](@attachment/Traverser.xmind)
+
+
