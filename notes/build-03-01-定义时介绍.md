@@ -1,7 +1,7 @@
 ---
 title: build-03-01-定义时介绍
 created: '2019-10-19T02:50:58.051Z'
-modified: '2020-01-12T07:52:34.680Z'
+modified: '2020-02-23T03:00:34.973Z'
 ---
 
 # build-03-01-定义时介绍
@@ -9,7 +9,6 @@ modified: '2020-01-12T07:52:34.680Z'
 ### 总体目录
 
 ```
-tree pkg/workflow/
 pkg/workflow/
 ├── atom
 │   ├── atom.go
@@ -25,15 +24,13 @@ pkg/workflow/
 └── step
     ├── builtin
     │   ├── command
-    │   │   ├── command.go
-    │   │   ├── echo.go
-    │   │   └── echo_test.go
+    │   │   └── command.go
     │   ├── noop.go
-    │   ├── sleep.go
-    │   └── sleep_test.go
+    │   ├── noop_atom.go
+    │   └── noop_test.go
     └── step.go
 
-7 directories, 14 files
+7 directories, 12 files
 ```
 
 ### 包含关系

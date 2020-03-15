@@ -2,7 +2,7 @@
 attachments: [Clipboard_2020-01-12-18-42-33.png]
 title: build-04-08-准备单进程运行时的reaper
 created: '2019-12-18T00:33:24.670Z'
-modified: '2020-01-12T10:42:48.561Z'
+modified: '2020-02-23T14:12:51.087Z'
 ---
 
 # build-04-08-准备单进程运行时的reaper
@@ -12,7 +12,8 @@ modified: '2020-01-12T10:42:48.561Z'
 reaper的主要工作就是来消费doneJobChan，并在满足执行依赖的情况下将下游的job放入runJobChan。
 
 另外本单进程运行时不处理持久化相关的事情，所以相比起spincycle，本运行时只实现RunningChainReaper。
-比如，spincycle里另外的StoppedChainReaper用来处理traverser执行Stop后的状态下，对doneJobChan的消费，本运行时暂不作处理，traverser Stop的时候chain的job还没执行完就算了。
+比如，spincycle里另外的StoppedChainReaper用来处理traverser执行Stop后的状态下，对doneJobChan的消费进行不执行但是做好记录的处理。
+本运行时暂不作处理，traverser Stop的时候chain的job还没执行完就算了。
 
 ## 定义
 
@@ -59,13 +60,13 @@ type JobReaper interface {
 
 - 置stopped为true
 - close(r.stopChan)，即给Run中的for loop终止信号
-- 读取doneChan等待doneChan被close，即等待Run执行完
+- 等待doneChan被close，即等待Run执行完
 
 ### Reap
 
 - r.chain.SetJobState(job.ID(), job.State)修改chain的记录中job的状态
 - 如果job的状态是执行成功，则将当前job的直接下游job判断IsRunnable为true后发送给runJobChan，如果下游job除了当前job还有其他上游的话，则除非当前job是最后一个完成的上游，否则此时下游job的IsRunnable会为false
-- 如果job的状态没有执行成功，则判断CanRetrySequence，即sequence retry。注意此处不处于job retry，job retry在runner中进行。如果能够进行sequence retry，此处调用r.prepareSequenceRetry(job)后，将结果sequence start job重新放入runJobChan
+- 如果job的状态没有执行成功，则判断CanRetrySequence，即sequence retry。注意此处不处理job retry，job retry在runner中进行。如果能够进行sequence retry，此处调用r.prepareSequenceRetry(job)后，将结果sequence start job重新放入runJobChan
 
 ### prepareSequenceRetry
 

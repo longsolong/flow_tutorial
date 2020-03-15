@@ -1,10 +1,24 @@
 ---
+attachments: [Clipboard_2020-01-17-20-23-18.png]
 title: TODO
 created: '2019-10-13T14:51:19.135Z'
-modified: '2020-01-12T04:59:28.738Z'
+modified: '2020-03-15T04:28:43.696Z'
 ---
 
 # TODO
+
+重新定位sequence 包括执行/重试
+sequence_fast_forward作为默认sequence执行的标准
+有点类似dep inject的劲来了。
+
+sequence默认的调度交由自行实现pipeline。
+
+
+
+
+https://tour.golang.org/concurrency/7
+https://tour.golang.org/concurrency/10
+
 
 检查mutex
 
