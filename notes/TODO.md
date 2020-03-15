@@ -2,7 +2,7 @@
 attachments: [Clipboard_2020-01-17-20-23-18.png]
 title: TODO
 created: '2019-10-13T14:51:19.135Z'
-modified: '2020-01-18T13:56:50.361Z'
+modified: '2020-03-15T04:28:43.696Z'
 ---
 
 # TODO
@@ -12,10 +12,6 @@ sequence_fast_forward作为默认sequence执行的标准
 有点类似dep inject的劲来了。
 
 sequence默认的调度交由自行实现pipeline。
-
-multi stage pipeline
-- stage与stage之间通过chan来sync
-- 每个stage可以并发执行
 
 
 

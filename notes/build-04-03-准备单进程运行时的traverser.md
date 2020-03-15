@@ -2,7 +2,7 @@
 attachments: [Clipboard_2020-01-12-18-37-52.png, Traverser.xmind]
 title: build-04-03-准备单进程运行时的traverser
 created: '2019-12-18T00:33:55.109Z'
-modified: '2020-02-23T13:28:43.769Z'
+modified: '2020-02-23T13:34:14.604Z'
 ---
 
 # build-04-03-准备单进程运行时的traverser
@@ -189,6 +189,6 @@ type Traverser interface {
 
 ### xmind
 
-详见![](@attachment/Traverser.xmind)
+详见[](@attachment/Traverser.xmind)
 
 
